@@ -123,7 +123,9 @@ public interface Operations
 	return "Laplace: The best option is " + state.option() + " at " + state.natureState() + " with a gain of " + state.value();
     }
     
-    
+    /*
+     * @States -> Lista enlazada que contiene los estados a priori.
+     */
     public default String hurwicz(LinkedList<State>states,Double alfa)
     {
 	LinkedList<String> options = states.stream().map(state->state.option()).distinct().collect(Collectors.toCollection(LinkedList::new));
@@ -133,6 +135,7 @@ public interface Operations
 	DecimalFormat format = new DecimalFormat("0.00");
 	Double alfa_1 = Double.parseDouble(format.format(1.0d-alfa));
 	
+	//Obtener los mejores y peores estados por alternativa.
 	options.forEach(ns->
 	{
 	    source.add(states.stream()
@@ -147,11 +150,12 @@ public interface Operations
 				).limit(1)
 			.collect(Collectors.toList()).get(0)); 
 	    
+	   //Multiplicar por el factor de ponderación al mas alto y por el factor de ponderación-1, al más bajo.
 	   Double value = (source.get(1).value()*alfa)+(source.get(0).value()*alfa_1);
 	   last.add(new State(source.get(0).natureState(),source.get(0).option(),value));
 	   source.clear();
 	});
-	
+	//Escoger la que contenga el mayor resultado.
 	last.sort(Comparator.comparing(State::value).reversed());
 	state = last.getFirst();	
 	return "Hurwicz: The best option is " + state.option() + " at " + state.natureState() + " with a gain of " + state.value();
