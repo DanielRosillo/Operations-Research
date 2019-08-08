@@ -4,7 +4,7 @@
 
 ![Leonard-J -Savage](https://user-images.githubusercontent.com/23446483/62672344-ecf4ab00-b95f-11e9-907d-68ce959cbaf8.jpg)
 
-Leonard Jimmie Savage (1917-1971)- Este criterio se ajusta a las decisiones pesimistas y conservadoras, la matriz de ganancia esta basada en el costo de oportunidad, evalúa en que perdidas se incurre si no se escoge la mejor decisión, una vez tomada la decisión y producido el estado natural, se obtiene un resultado; Savage argumenta que después de conocer el resultado el decisor puede arrepentirse de haber seleccionado la alternativa dada.
+Leonard Jimmie Savage (1917-1971)- Este criterio ajusta al agente a las decisiones pesimistas y conservadoras, la matriz de ganancia esta basada en el costo de oportunidad, evalúa en que perdidas se incurre si no se escoge la mejor decisión, una vez tomada la decisión y producido el estado natural, se obtiene un resultado; Savage argumenta que después de conocer el resultado el decisor puede arrepentirse de haber seleccionado la alternativa dada.
 
 ## Algoritmo<br>
 1.- Determinar para cada estado de la naturaleza la mejor ganancia.<br>
