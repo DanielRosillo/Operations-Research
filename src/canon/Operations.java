@@ -37,6 +37,9 @@ public interface Operations
 	return "Wald: The best option is " + state.option() + " at " + state.natureState() + " with a gain of " + state.value();
     }
 
+    /*
+     * @States -> Lista enlazada que contiene los estados a priori.
+     */
     public default String savage(LinkedList<State>states)
     {
 	LinkedList<String> options = states.stream().map(state->state.option()).distinct().collect(Collectors.toCollection(LinkedList::new));
@@ -45,6 +48,7 @@ public interface Operations
 	LinkedList<State> newStates = new LinkedList<>();
 	State state;
 
+	//Determinar para cada estado de la naturaleza la mejor ganancia.
 	nature.forEach(ns->
 	{
 	    values.add(states.stream()
@@ -54,6 +58,11 @@ public interface Operations
 		    .collect(Collectors.toList()).get(0)); 
 	});
 
+	/*
+	 * Calcular el costo de oportunidad para cada alternativa, como la diferencia entre su ganancia y la mejor calculada. 
+	 * Una vez calculadas las diferencias se hace una nueva matriz en sustitución de los valores del resto de la columna, 
+	 * esta diferencia es el costo de oportunidad o arrepentimiento por no haber escogido la alternativa que diera el valor óptimo.
+	 */
 	for(int j=0;j<nature.size();j++)
 	{
 	    for(int i=0;i<states.size();i++)
@@ -64,6 +73,7 @@ public interface Operations
 
 	}
 
+	//Generar un nuevo vector, escogiendo la mejor opción de cada alternativa.
 	options.forEach(ns->
 	{
 	    newStates.add(states.stream()
@@ -73,12 +83,16 @@ public interface Operations
 		    .collect(Collectors.toList()).get(0)); 
 	});
 
+	//La alternativa con el menor valor dentro del vector es la respuesta.
 	newStates.sort(Comparator.comparing(State::value));
 	state = newStates.getFirst();
 
 	return "Savage: The best option is " + state.option() + " at " + state.natureState() + " with a gain of " + state.value();
     }
     
+    /*
+     * @States -> Lista enlazada que contiene los estados a priori.
+     */
     public default String laplace(LinkedList<State>states)
     {
 	LinkedList<String> options = states.stream().map(state->state.option()).distinct().collect(Collectors.toCollection(LinkedList::new));
@@ -88,6 +102,8 @@ public interface Operations
 	Double n = Double.parseDouble(format.format(1.0d/nature.size()));
 	LinkedList<State> newStates = new LinkedList<>();
 	 
+
+	//Calcular la sumatoria de las probabilidades de cada alternativa por el valor a priori del estado.
 	options.forEach(op->
 	{
 	   Double value = 0.0d;
@@ -100,7 +116,7 @@ public interface Operations
 	       }
 	   newStates.add(new State(source.natureState(),source.option(),value));
 	});
-	
+	//Del vector resultante, escoger el mayor valor.
 	newStates.sort(Comparator.comparing(State::value).reversed());
 	state = newStates.getFirst();
 
