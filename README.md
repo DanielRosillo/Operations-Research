@@ -35,7 +35,24 @@ Se eligen los mejores y peores estados por alternativa, hecho esto se aplica un 
 2.- Multiplicar por el factor de ponderación al mas alto y por el factor de ponderación-1, al más bajo.<br>
 3.- Escoger la que contenga el mayor resultado.<br>
 
+### Requirements
 
+### Powered by Java JDK 10
+![36222735_1731650116889496_8672753406986682368_n](https://user-images.githubusercontent.com/23446483/41886236-26f7ba94-78c1-11e8-963a-cae5eccb6394.jpg)
+
+The Library requires Java SE Development Kit 10 or Higher.
+
+## Authors
+
+ **Daniel Rosillo** - *Initial work* -
+ Danielrosillodev@gmail.com
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md] file for details.
+
+## Support && Feedback
+https://twitter.com/DanielRosillo22
 
 
 ## More of me...
