@@ -1,5 +1,4 @@
 package canon;
-
 import java.util.LinkedList;
 
 import static java.lang.System.out;
